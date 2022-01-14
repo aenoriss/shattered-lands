@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25%;
+    width: 30%;
     height: 100%;
     background-color: white;
     position: absolute;
@@ -19,7 +19,6 @@
     color: white;
     margin: 1rem;
     padding: 15px 32px;
-    text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
@@ -27,12 +26,10 @@
 
   .tileList {
       width: 100%;
-      border: 1px solid black;
       display: flex;
-      align-items: center;
       align-content: top;
       flex-direction: row;
-      justify-content: center;
+      justify-content: left;
       flex-wrap: wrap;
       margin: 0;
       overflow: auto;
@@ -41,15 +38,16 @@
   .tileContainer {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: left;
+      justify-content: left;
   }
   
   .tile {
-      width: 10rem;
+      width: 15rem;
       margin: 4.7%;
       height: 10rem;
-      border: 1px solid blue;
+      display: flex;
+      flex-direction: row;
   }
 
   .footer{
@@ -59,6 +57,42 @@
   }
 
   .cardImage{
-      width: 100%;
-        height: 100%;
+    width: 80%;
+    height: 80%;
+    margin-right: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .cardInformation{
+    display: flex;
+    flex-direction: column;
+    width: 5rem;
+
+  }
+
+  .cardText{
+    display: flex;
+    justify-items: left;
+    flex-direction: row;
+    width: 10rem;
+    margin: 0.3rem;
+    text-align: left;
+  }
+
+  .cardTextTitle{
+      font-weight: bold;
+      font-size: 1.5rem;
+  }
+
+  .cardsubTitle{
+      font-size: 1.1rem;
+      font-style: italic;
+  }
+
+  .coordinates{
+      font-size: 1.2rem;
+  }
+
+  .headerImage{
+      width: 7rem;
   }

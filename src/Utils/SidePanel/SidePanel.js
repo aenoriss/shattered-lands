@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { DoubleSide } from "three";
 import lands from "../../Data/Abis/Lands.json";
+import { ethers } from "ethers"
 import './SidePanel.css';
 
 const data = {
@@ -13,41 +14,49 @@ function SidePanel(props) {
         {
             type: "Plain",
             level: 1,
+            description: "The basic tile is the building block of your island.",
             key: 1
         },
         {
-            type: "Plain",
+            type: "Shardium",
             level: 1,
+            description: "The basic tile is the building block of your island.",
             key: 2
         },
         {
-            type: "Plain",
+            type: "Shardium",
             level: 1,
+            description: "The basic tile is the building block of your island.",
             key: 3
         },
         {
             type: "Plain",
             level: 1,
+            description: "The basic tile is the building block of your island.",
             key: 4
         },
         {
-            type: "Plain",
+            type: "Iron",
             level: 1,
+            description: "The basic tile is the building block of your island.",
             key: 5
         },
         {
             type: "Plain",
             level: 1,
+            description: "The basic tile is the building block of your island.",
             key: 6
         },
         {
-            type: "Plain",
+            type: "Iron",
             level: 1,
+            description: "The basic tile is the building block of your island.",
             key: 7
         },
         {
-            type: "Plain",
+            type: "Shardium",
             level: 1,
+            description: "The basic tile is the building block of your island.",
             key: 8
         },
     ]);
@@ -55,102 +64,106 @@ function SidePanel(props) {
     const [selectedNFT, setSelectedNFT] = useState(undefined)
 
 
-    useEffect(() => {
-        if (window.ethereum.isMetaMask) {
+    // useEffect(() => {
+    //     if (window.ethereum.isMetaMask) {
 
-            // useDispatch(setMetamaskLoading(true));
+    //         // useDispatch(setMetamaskLoading(true));
 
-            window.ethereum.request({ method: 'eth_requestAccounts' }).then(async () => {
-                console.log("Connected")
+    //         window.ethereum.request({ method: 'eth_requestAccounts' }).then(async () => {
+    //             console.log("Connected")
 
-                // Change state 
-                // metamaskConnect -> true
+    //             // Change state 
+    //             // metamaskConnect -> true
 
-                const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+    //             const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
-                const signer = provider.getSigner();
+    //             const signer = provider.getSigner();
 
-                const blockNumber = await provider.getBlockNumber();
+    //             const blockNumber = await provider.getBlockNumber();
 
-                console.log("Block Number:", blockNumber)
+    //             console.log("Block Number:", blockNumber)
 
-                const landInstance = new ethers.Contract(data.landAddress, lands.abi, provider);
-
-
-                const mainWithSigner = mainInstance.connect(signer);
-
-                const accounts = await window.ethereum.request({ method: 'eth_accounts' })
+    //             const landInstance = new ethers.Contract(data.landAddress, lands.abi, provider);
 
 
-                if (accounts.length > 0) {
+    //             const mainWithSigner = mainInstance.connect(signer);
 
-                //  Load minted lands
+    //             const accounts = await window.ethereum.request({ method: 'eth_accounts' })
 
-                let balance = await landInstance.balanceOf(accounts[0]);
 
-                const lands = [];
+    //             if (accounts.length > 0) {
 
-                for (let i = 0; i < balance; i++) {
-                    let landId = await landInstance.tokenOfOwnerByIndex(accounts[0], i);
-                    
-                    let land = await landInstance.indexToLand(landId);
+    //             //  Load minted lands
 
-                    lands.push(land);
-                    
-                }
+    //             let balance = await landInstance.balanceOf(accounts[0]);
 
-                console.log("Lands: ", lands);
+    //             const lands = [];
 
-                //   let isRegistered = await mainWithSigner.userToRegistered(accounts[0]).catch(e => {
-                //     console.log("error: ", e)
-                //   });
+    //             for (let i = 0; i < balance; i++) {
+    //                 let landId = await landInstance.tokenOfOwnerByIndex(accounts[0], i);
 
-                //   console.log("isRegistered: ", isRegistered);
-                }
+    //                 let land = await landInstance.indexToLand(landId);
 
-            }).catch(() => {
-                console.log("Not Connected");
-            })
-        }
-    }, [])
+    //                 lands.push(land);
 
-    async function onMint() {
-        window.ethereum.request({ method: 'eth_requestAccounts' }).then(async () => {
-            console.log("Connected")
+    //             }
 
-            const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+    //             console.log("Lands: ", lands);
 
-            const signer = provider.getSigner();
+    //             //   let isRegistered = await mainWithSigner.userToRegistered(accounts[0]).catch(e => {
+    //             //     console.log("error: ", e)
+    //             //   });
 
-            const landInstance = new ethers.Contract(data.landAddress, lands.abi, provider);
+    //             //   console.log("isRegistered: ", isRegistered);
+    //             }
 
-            const mainWithSigner = mainInstance.connect(signer);
+    //         }).catch(() => {
+    //             console.log("Not Connected");
+    //         })
+    //     }
+    // }, [])
 
-            const accounts = await window.ethereum.request({ method: 'eth_accounts' })
+    // async function onMint() {
+    //     window.ethereum.request({ method: 'eth_requestAccounts' }).then(async () => {
+    //         console.log("Connected")
 
-            if (accounts.length > 0) {
+    //         const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
-              let tx = await landInstance.mintLand(1, 0).catch(e => {
-                console.log("error: ", e)
-              });
+    //         const signer = provider.getSigner();
 
-              console.log("Transaction: ", tx);
-            }
-        })
-    }
+    //         const landInstance = new ethers.Contract(data.landAddress, lands.abi, provider);
+
+    //         const mainWithSigner = mainInstance.connect(signer);
+
+    //         const accounts = await window.ethereum.request({ method: 'eth_accounts' })
+
+    //         if (accounts.length > 0) {
+
+    //           let tx = await landInstance.mintLand(1, 0).catch(e => {
+    //             console.log("error: ", e)
+    //           });
+
+    //           console.log("Transaction: ", tx);
+    //         }
+    //     })
+    // }
 
     return (
         <div id="menuPanel">
-            <h1>Tile </h1>
-            <h2>{"x: " + Math.ceil(props.data[0]) + "  y: " + Math.ceil(props.data[2]) + "  z: " + Math.ceil(props.data[1])}</h2>
-            <h1>Inventory {selectedNFT}</h1>
+            <img className="headerImage" src="hexagon.png"></img>
+            <h1>Tile: {"[" + Math.ceil(props.data[0]) + "," + Math.ceil(props.data[2]) + "," + Math.ceil(props.data[1]) + "]"} </h1>
+            {/* <p className="coordinates">{"[" + Math.ceil(props.data[0]) + "," + Math.ceil(props.data[2]) + "," + Math.ceil(props.data[1]) + "]"}</p> */}
+            <h1>Select Land {selectedNFT}</h1>
             <div className="tileList">
                 {landPopulate.map((land) => {
                     return (
-                        <div key = {land.key}  onClick={(e => {setSelectedNFT(land.key)})} className="tile">
+                        <div key={land.key} onClick={(e => { setSelectedNFT(land.key) })} className="tile">
                             <img className="cardImage" src="shardium.png"></img>
-                            <h3>{land.type}</h3>
-                            <h3>{land.level}</h3>
+                            <div className="cardInformation">
+                                <p className="cardText cardTextTitle">{land.type}</p>
+                                <p className="cardText cardsubTitle">Level {land.level}</p>
+                                <p className="cardText">{land.description}</p>
+                            </div>
                         </div>
                     )
                 })}
