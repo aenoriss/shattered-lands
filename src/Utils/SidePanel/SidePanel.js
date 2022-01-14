@@ -98,6 +98,8 @@ function SidePanel(props) {
 
                 console.log("Lands: ", lands);
 
+                setLandPopulate(lands);
+
                 //   let isRegistered = await mainWithSigner.userToRegistered(accounts[0]).catch(e => {
                 //     console.log("error: ", e)
                 //   });
@@ -142,12 +144,12 @@ function SidePanel(props) {
             <h2>{"x: " + Math.ceil(props.data[0]) + "  y: " + Math.ceil(props.data[2]) + "  z: " + Math.ceil(props.data[1])}</h2>
             <h1>Inventory {selectedNFT}</h1>
             <div className="tileList">
-                {landPopulate.map((land) => {
+                {landPopulate.map((land, i) => {
                     return (
-                        <div key = {land.key}  onClick={(e => {setSelectedNFT(land.key)})} className="tile">
+                        <div key={i}  onClick={(e => {setSelectedNFT(i)})} className="tile">
                             <img className="cardImage" src="shardium.png"></img>
-                            <h3>{land.type}</h3>
-                            <h3>{land.level}</h3>
+                            <h3>{land.landType}</h3>
+                            <h3>{land.rarity}</h3>
                         </div>
                     )
                 })}
