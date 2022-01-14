@@ -73,7 +73,22 @@ function SidePanel(props) {
 
                 if (accounts.length > 0) {
 
-                //   console.log("breaks?: ", accounts)
+                //  Load minted lands
+
+                let balance = await landInstance.balanceOf(accounts[0]);
+
+                const lands = [];
+
+                for (let i = 0; i < balance; i++) {
+                    let landId = await landInstance.tokenOfOwnerByIndex(accounts[0], i);
+                    
+                    let land = await landInstance.indexToLand(landId);
+
+                    lands.push(land);
+                    
+                }
+
+                console.log("Lands: ", lands);
 
                 //   let isRegistered = await mainWithSigner.userToRegistered(accounts[0]).catch(e => {
                 //     console.log("error: ", e)
@@ -104,7 +119,7 @@ function SidePanel(props) {
 
             if (accounts.length > 0) {
 
-              let tx = await mainWithSigner.mintLand(1, 0).catch(e => {
+              let tx = await landInstance.mintLand(1, 0).catch(e => {
                 console.log("error: ", e)
               });
 
