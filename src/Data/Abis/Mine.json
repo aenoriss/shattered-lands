@@ -18694,7 +18694,7 @@
         1069
       ],
       "Mine": [
-        3125
+        3095
       ],
       "Ownable": [
         104
@@ -18703,12 +18703,12 @@
         2219
       ]
     },
-    "id": 3126,
+    "id": 3096,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3111,
+        "id": 3081,
         "literals": [
           "solidity",
           "^",
@@ -18721,10 +18721,10 @@
       {
         "absolutePath": "project:/contracts/Building.sol",
         "file": "./Building.sol",
-        "id": 3112,
+        "id": 3082,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 3126,
+        "scope": 3096,
         "sourceUnit": 2509,
         "src": "57:24:21",
         "symbolAliases": [],
@@ -18733,10 +18733,10 @@
       {
         "absolutePath": "project:/contracts/BuildingType.sol",
         "file": "./BuildingType.sol",
-        "id": 3113,
+        "id": 3083,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 3126,
+        "scope": 3096,
         "sourceUnit": 2516,
         "src": "82:28:21",
         "symbolAliases": [],
@@ -18747,13 +18747,13 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 3114,
+              "id": 3084,
               "name": "Building",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 2508,
               "src": "129:8:21"
             },
-            "id": 3115,
+            "id": 3085,
             "nodeType": "InheritanceSpecifier",
             "src": "129:8:21"
           }
@@ -18762,9 +18762,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 3125,
+        "id": 3095,
         "linearizedBaseContracts": [
-          3125,
+          3095,
           2508,
           104,
           1437,
@@ -18782,7 +18782,7 @@
         "nodes": [
           {
             "body": {
-              "id": 3123,
+              "id": 3093,
               "nodeType": "Block",
               "src": "158:52:21",
               "statements": [
@@ -18791,7 +18791,7 @@
                     "arguments": [
                       {
                         "expression": {
-                          "id": 3119,
+                          "id": 3089,
                           "name": "BuildingType",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -18802,7 +18802,7 @@
                             "typeString": "type(enum BuildingType)"
                           }
                         },
-                        "id": 3120,
+                        "id": 3090,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -18824,7 +18824,7 @@
                           "typeString": "enum BuildingType"
                         }
                       ],
-                      "id": 3118,
+                      "id": 3088,
                       "name": "_setBuildingType",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -18835,7 +18835,7 @@
                         "typeString": "function (enum BuildingType)"
                       }
                     },
-                    "id": 3121,
+                    "id": 3091,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -18850,13 +18850,13 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 3122,
+                  "id": 3092,
                   "nodeType": "ExpressionStatement",
                   "src": "168:35:21"
                 }
               ]
             },
-            "id": 3124,
+            "id": 3094,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -18864,25 +18864,25 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3116,
+              "id": 3086,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "155:2:21"
             },
             "returnParameters": {
-              "id": 3117,
+              "id": 3087,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "158:0:21"
             },
-            "scope": 3125,
+            "scope": 3095,
             "src": "144:66:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 3126,
+        "scope": 3096,
         "src": "112:100:21",
         "usedErrors": []
       }
@@ -18938,7 +18938,7 @@
         1069
       ],
       "Mine": [
-        3125
+        3095
       ],
       "Ownable": [
         104
@@ -18947,12 +18947,12 @@
         2219
       ]
     },
-    "id": 3126,
+    "id": 3096,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3111,
+        "id": 3081,
         "literals": [
           "solidity",
           "^",
@@ -18965,10 +18965,10 @@
       {
         "absolutePath": "project:/contracts/Building.sol",
         "file": "./Building.sol",
-        "id": 3112,
+        "id": 3082,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 3126,
+        "scope": 3096,
         "sourceUnit": 2509,
         "src": "57:24:21",
         "symbolAliases": [],
@@ -18977,10 +18977,10 @@
       {
         "absolutePath": "project:/contracts/BuildingType.sol",
         "file": "./BuildingType.sol",
-        "id": 3113,
+        "id": 3083,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 3126,
+        "scope": 3096,
         "sourceUnit": 2516,
         "src": "82:28:21",
         "symbolAliases": [],
@@ -18991,13 +18991,13 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 3114,
+              "id": 3084,
               "name": "Building",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 2508,
               "src": "129:8:21"
             },
-            "id": 3115,
+            "id": 3085,
             "nodeType": "InheritanceSpecifier",
             "src": "129:8:21"
           }
@@ -19006,9 +19006,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 3125,
+        "id": 3095,
         "linearizedBaseContracts": [
-          3125,
+          3095,
           2508,
           104,
           1437,
@@ -19026,7 +19026,7 @@
         "nodes": [
           {
             "body": {
-              "id": 3123,
+              "id": 3093,
               "nodeType": "Block",
               "src": "158:52:21",
               "statements": [
@@ -19035,7 +19035,7 @@
                     "arguments": [
                       {
                         "expression": {
-                          "id": 3119,
+                          "id": 3089,
                           "name": "BuildingType",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -19046,7 +19046,7 @@
                             "typeString": "type(enum BuildingType)"
                           }
                         },
-                        "id": 3120,
+                        "id": 3090,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -19068,7 +19068,7 @@
                           "typeString": "enum BuildingType"
                         }
                       ],
-                      "id": 3118,
+                      "id": 3088,
                       "name": "_setBuildingType",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -19079,7 +19079,7 @@
                         "typeString": "function (enum BuildingType)"
                       }
                     },
-                    "id": 3121,
+                    "id": 3091,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -19094,13 +19094,13 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 3122,
+                  "id": 3092,
                   "nodeType": "ExpressionStatement",
                   "src": "168:35:21"
                 }
               ]
             },
-            "id": 3124,
+            "id": 3094,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -19108,25 +19108,25 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3116,
+              "id": 3086,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "155:2:21"
             },
             "returnParameters": {
-              "id": 3117,
+              "id": 3087,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "158:0:21"
             },
-            "scope": 3125,
+            "scope": 3095,
             "src": "144:66:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 3126,
+        "scope": 3096,
         "src": "112:100:21",
         "usedErrors": []
       }
@@ -19139,7 +19139,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-01-14T02:14:31.995Z",
+  "updatedAt": "2022-01-14T06:16:51.144Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

@@ -1,8 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { DoubleSide } from "three";
+import lands from "../../Data/Abis/Lands.json";
 import './SidePanel.css';
 
+const data = {
+    landAddress: ""
+}
 
 function SidePanel(props) {
     const [landPopulate, setLandPopulate] = useState([
@@ -51,23 +55,23 @@ function SidePanel(props) {
                 // Change state 
                 // metamaskConnect -> true
 
-                // const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+                const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
-                // const signer = provider.getSigner();
+                const signer = provider.getSigner();
 
-                // const blockNumber = await provider.getBlockNumber();
+                const blockNumber = await provider.getBlockNumber();
 
-                // console.log("Block Number:", blockNumber)
+                console.log("Block Number:", blockNumber)
 
-                // const mainInstance = new ethers.Contract(data.contract_address, mainContract.abi, provider);
-
-
-                // const mainWithSigner = mainInstance.connect(signer);
-
-                // const accounts = await window.ethereum.request({ method: 'eth_accounts' })
+                const landInstance = new ethers.Contract(data.landAddress, lands.abi, provider);
 
 
-                // if (accounts.length > 0) {
+                const mainWithSigner = mainInstance.connect(signer);
+
+                const accounts = await window.ethereum.request({ method: 'eth_accounts' })
+
+
+                if (accounts.length > 0) {
 
                 //   console.log("breaks?: ", accounts)
 
@@ -76,13 +80,38 @@ function SidePanel(props) {
                 //   });
 
                 //   console.log("isRegistered: ", isRegistered);
-                // }
+                }
 
             }).catch(() => {
                 console.log("Not Connected");
             })
         }
     }, [])
+
+    async function onMint() {
+        window.ethereum.request({ method: 'eth_requestAccounts' }).then(async () => {
+            console.log("Connected")
+
+            const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+
+            const signer = provider.getSigner();
+
+            const landInstance = new ethers.Contract(data.landAddress, lands.abi, provider);
+
+            const mainWithSigner = mainInstance.connect(signer);
+
+            const accounts = await window.ethereum.request({ method: 'eth_accounts' })
+
+            if (accounts.length > 0) {
+
+              let tx = await mainWithSigner.mintLand(1, 0).catch(e => {
+                console.log("error: ", e)
+              });
+
+              console.log("Transaction: ", tx);
+            }
+        })
+    }
 
     return (
         <div>
@@ -102,8 +131,17 @@ function SidePanel(props) {
                     })}
                 </div>
                 <div className="footer">
-                    <button class="button">Create Land</button>
-                    <button class="button">Add Land</button>
+                    <button 
+                        class="button"
+                        onClick={onMint}
+                    >
+                        Create Land
+                    </button>
+                    <button 
+                        class="button"
+                    >
+                        Add Land
+                    </button>
                 </div>
 
 
