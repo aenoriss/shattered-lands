@@ -94,7 +94,7 @@ function SidePanel(props) {
                     {landPopulate.map((land) => {
                         return (
                             <div className="tile">
-                                <img></img>
+                                <img className="cardImage" src="shardium.png"></img>
                                 <h3>{land.type}</h3>
                                 <h3>{land.level}</h3>
                             </div>
