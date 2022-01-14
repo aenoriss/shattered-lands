@@ -1,13 +1,9 @@
-import Box from "./Utils/Box";
-import ReactDOM from 'react-dom';
 import CameraControls from "./Utils/Camera";
-import React, { useRef, useState, Suspense } from 'react'
+import React, { useState, Suspense } from 'react'
 import Grid from "./Utils/Board/Grid";
-import { Canvas, useFrame, useLoader, extend } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import SidePanel from "./Utils/SidePanel/SidePanel";
-import BasicTile from "./ModelComponent/BasicTile";
 import './App.css';
-import { Environment } from '@react-three/drei'
 
 //Turns OrbitControls into a JSX element.
 // extend({ OrbitControls });

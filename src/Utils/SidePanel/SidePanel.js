@@ -3,10 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { DoubleSide } from "three";
 import lands from "../../Data/Abis/Lands.json";
 import './SidePanel.css';
-
-const data = {
-    landAddress: ""
-}
+import data from 'Data/contracts.json';
 
 function SidePanel(props) {
     const [landPopulate, setLandPopulate] = useState([
