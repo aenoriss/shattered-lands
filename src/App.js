@@ -19,11 +19,8 @@ function App() {
     setselectedTile(data);
   }
 
-  console.log(Environment)
-
   return (
     <div className="App">
-      <SidePanel data={selectedTile} />
       <Canvas>
         <Suspense fallback={"loading"}>
           <color attach="background" args={["#229aca"]} />
@@ -41,9 +38,10 @@ function App() {
           <pointLight position={[10, 10, 10]} />
           <ambientLight />
         </Suspense>
-
       </Canvas>
+      {selectedTile != undefined && <SidePanel data={selectedTile} />}
     </div>
+
   );
 };
 

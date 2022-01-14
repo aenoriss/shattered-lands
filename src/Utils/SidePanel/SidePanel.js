@@ -11,38 +11,49 @@ const data = {
 function SidePanel(props) {
     const [landPopulate, setLandPopulate] = useState([
         {
-            type: "plain",
-            level: 1
+            type: "Plain",
+            level: 1,
+            key: 1
         },
         {
-            type: "plain",
-            level: 1
+            type: "Plain",
+            level: 1,
+            key: 2
         },
         {
-            type: "plain",
-            level: 1
+            type: "Plain",
+            level: 1,
+            key: 3
         },
         {
-            type: "plain",
-            level: 1
+            type: "Plain",
+            level: 1,
+            key: 4
         },
         {
-            type: "plain",
-            level: 1
+            type: "Plain",
+            level: 1,
+            key: 5
         },
         {
-            type: "plain",
-            level: 1
+            type: "Plain",
+            level: 1,
+            key: 6
         },
         {
-            type: "plain",
-            level: 1
+            type: "Plain",
+            level: 1,
+            key: 7
         },
         {
-            type: "plain",
-            level: 1
+            type: "Plain",
+            level: 1,
+            key: 8
         },
     ]);
+
+    const [selectedNFT, setSelectedNFT] = useState(undefined)
+
 
     useEffect(() => {
         if (window.ethereum.isMetaMask) {
@@ -129,38 +140,25 @@ function SidePanel(props) {
     }
 
     return (
-        <div>
-            {props.data && <div id="menuPanel">
-                <h1>Tile </h1>
-                <h2>{"x: " + Math.ceil(props.data[0]) + "  y: " + Math.ceil(props.data[2]) + "  z: " + Math.ceil(props.data[1])}</h2>
-                <h1>Inventory</h1>
-                <div className="tileList">
-                    {landPopulate.map((land) => {
-                        return (
-                            <div className="tile">
-                                <img className="cardImage" src="shardium.png"></img>
-                                <h3>{land.type}</h3>
-                                <h3>{land.level}</h3>
-                            </div>
-                        )
-                    })}
-                </div>
-                <div className="footer">
-                    <button 
-                        class="button"
-                        onClick={onMint}
-                    >
-                        Create Land
-                    </button>
-                    <button 
-                        class="button"
-                    >
-                        Add Land
-                    </button>
-                </div>
-
-
-            </div>}
+        <div id="menuPanel">
+            <h1>Tile </h1>
+            <h2>{"x: " + Math.ceil(props.data[0]) + "  y: " + Math.ceil(props.data[2]) + "  z: " + Math.ceil(props.data[1])}</h2>
+            <h1>Inventory {selectedNFT}</h1>
+            <div className="tileList">
+                {landPopulate.map((land) => {
+                    return (
+                        <div key = {land.key}  onClick={(e => {setSelectedNFT(land.key)})} className="tile">
+                            <img className="cardImage" src="shardium.png"></img>
+                            <h3>{land.type}</h3>
+                            <h3>{land.level}</h3>
+                        </div>
+                    )
+                })}
+            </div>
+            <div className="footer">
+                <button class="button">Create Land</button>
+                <button class="button">Add Land</button>
+            </div>
         </div>
     )
 }
