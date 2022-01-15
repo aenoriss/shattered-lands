@@ -123,6 +123,31 @@ function SidePanel(props) {
 
             const landInstance = new ethers.Contract(data.landAddress, lands.abi, provider);
 
+            const landWithSigner = landInstance.connect(signer);
+
+            const accounts = await window.ethereum.request({ method: 'eth_accounts' })
+
+            if (accounts.length > 0) {
+
+              let tx = await landWithSigner.mintLand(1, 0).catch(e => {
+                console.log("error: ", e)
+              });
+
+              console.log("Transaction: ", tx);
+            }
+        })
+    }
+
+    async function onAnnex() {
+        window.ethereum.request({ method: 'eth_requestAccounts' }).then(async () => {
+            console.log("Connected")
+
+            const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+
+            const signer = provider.getSigner();
+
+            const landInstance = new ethers.Contract(data.landAddress, lands.abi, provider);
+
             const mainWithSigner = mainInstance.connect(signer);
 
             const accounts = await window.ethereum.request({ method: 'eth_accounts' })
