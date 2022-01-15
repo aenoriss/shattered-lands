@@ -1,13 +1,16 @@
 // const Land = artifacts.require("Land");
 const fs = require('fs');
 const Lands = artifacts.require("Lands");
+const Kingdom = artifacts.require("Kingdom");
 
 module.exports = async function (deployer) {
   await deployer.deploy(Lands);
 
+  await deployer.deploy(Kingdom, Lands.address)
   // create a JSON object
   const contract = {
-    address: Lands.address
+    landAddress: Lands.address,
+    kingdomAddress: Kingdom.address
   };
 
   // convert JSON object to string
