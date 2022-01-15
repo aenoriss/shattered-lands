@@ -4,7 +4,7 @@ import { DoubleSide } from "three";
 import lands from "../../Data/Abis/Lands.json";
 import { ethers } from "ethers"
 import './SidePanel.css';
-import data from 'Data/contracts.json';
+// import data from 'Data/contracts.json';
 
 function SidePanel(props) {
     const [landPopulate, setLandPopulate] = useState([
@@ -58,7 +58,7 @@ function SidePanel(props) {
         },
     ]);
 
-    const [selectedNFT, setSelectedNFT] = useState(landPopulate[0].key)
+    const [selectedNFT, setSelectedNFT] = useState()
 
     // useEffect(() => {
     //     if (window.ethereum.isMetaMask) {
@@ -106,7 +106,7 @@ function SidePanel(props) {
 
     //             console.log("Lands: ", lands);
 
-                setLandPopulate(lands);
+                // setLandPopulate(lands);
 
                 //   let isRegistered = await mainWithSigner.userToRegistered(accounts[0]).catch(e => {
                 //     console.log("error: ", e)

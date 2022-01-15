@@ -1,14 +1,21 @@
 import CameraControls from "./Utils/Camera";
-import React, { useState, Suspense } from 'react'
+import React, { useState, Suspense, useEffect } from 'react'
 import Grid from "./Utils/Board/Grid";
 import SidePanel from "./Utils/SidePanel/SidePanel";
 import Enviroment from "./Environment";
+import { Canvas, useFrame, useLoader, extend, useThree } from '@react-three/fiber'
+import { CubeTextureLoader } from "three";
 
 
 // import * as THREE from "three";
 import './App.css';
+import { Environment } from "@react-three/drei";
 function App() {
-  const [selectedTile, setselectedTile] = useState()
+  // const { scene } = useThree();
+  const [selectedTile, setselectedTile] = useState(undefined)
+  const [sceneLoaded, setSceneLoaded] = useState(false)
+
+
 
   const handleData = (data) => {
     setselectedTile(data);
@@ -19,7 +26,7 @@ function App() {
       <Canvas>
         <Suspense fallback={"loading"}>
           {/* <color attach="background" args={["#229aca"]} /> */}
-          {/* <Enviroment/> */}
+          <Enviroment/>
           <CameraControls />
           <Grid type={0} data={handleData} />
           <Grid type={[1]} />
