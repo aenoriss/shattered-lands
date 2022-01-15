@@ -4,10 +4,7 @@ import { DoubleSide } from "three";
 import lands from "../../Data/Abis/Lands.json";
 import { ethers } from "ethers"
 import './SidePanel.css';
-
-const data = {
-    landAddress: ""
-}
+import data from 'Data/contracts.json';
 
 function SidePanel(props) {
     const [landPopulate, setLandPopulate] = useState([
@@ -63,7 +60,6 @@ function SidePanel(props) {
 
     const [selectedNFT, setSelectedNFT] = useState(landPopulate[0].key)
 
-
     // useEffect(() => {
     //     if (window.ethereum.isMetaMask) {
 
@@ -110,9 +106,11 @@ function SidePanel(props) {
 
     //             console.log("Lands: ", lands);
 
-    //             //   let isRegistered = await mainWithSigner.userToRegistered(accounts[0]).catch(e => {
-    //             //     console.log("error: ", e)
-    //             //   });
+                setLandPopulate(lands);
+
+                //   let isRegistered = await mainWithSigner.userToRegistered(accounts[0]).catch(e => {
+                //     console.log("error: ", e)
+                //   });
 
     //             //   console.log("isRegistered: ", isRegistered);
     //             }
@@ -133,13 +131,13 @@ function SidePanel(props) {
 
     //         const landInstance = new ethers.Contract(data.landAddress, lands.abi, provider);
 
-    //         const mainWithSigner = mainInstance.connect(signer);
+    //         const landWithSigner = landInstance.connect(signer);
 
     //         const accounts = await window.ethereum.request({ method: 'eth_accounts' })
 
     //         if (accounts.length > 0) {
 
-    //           let tx = await landInstance.mintLand(1, 0).catch(e => {
+    //           let tx = await landWithSigner.mintLand(1, 0).catch(e => {
     //             console.log("error: ", e)
     //           });
 
@@ -148,6 +146,31 @@ function SidePanel(props) {
     //     })
     // }
 
+    // async function onAnnex() {
+    //     window.ethereum.request({ method: 'eth_requestAccounts' }).then(async () => {
+    //         console.log("Connected")
+
+    //         const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+
+    //         const signer = provider.getSigner();
+
+    //         const landInstance = new ethers.Contract(data.landAddress, lands.abi, provider);
+
+    //         const mainWithSigner = mainInstance.connect(signer);
+
+    // //         const accounts = await window.ethereum.request({ method: 'eth_accounts' })
+
+    // //         if (accounts.length > 0) {
+
+    // //           let tx = await landInstance.mintLand(1, 0).catch(e => {
+    // //             console.log("error: ", e)
+    // //           });
+
+    // //           console.log("Transaction: ", tx);
+    // //         }
+    // //     })
+    // // }
+
     return (
         <div id="menuPanel">
             <img className="headerImage" src="hexagon.png"></img>
@@ -155,7 +178,7 @@ function SidePanel(props) {
             {/* <p className="coordinates">{"[" + Math.ceil(props.data[0]) + "," + Math.ceil(props.data[2]) + "," + Math.ceil(props.data[1]) + "]"}</p> */}
             <h1>Select Land {selectedNFT}</h1>
             <div className="tileList">
-                {landPopulate.map((land) => {
+                {landPopulate.map((land, i) => {
                     return (
                         <div key={land.key} onClick={(e => { setSelectedNFT(land.key) })} className="tile">
                             <img className="cardImage" src={`${land.type}.png`}></img>
