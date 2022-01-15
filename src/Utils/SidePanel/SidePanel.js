@@ -20,13 +20,13 @@ function SidePanel(props) {
         {
             type: "Shardium",
             level: 1,
-            description: "The basic tile is the building block of your island.",
+            description: "An intense magical aura emanates from this tile.",
             key: 2
         },
         {
             type: "Shardium",
             level: 1,
-            description: "The basic tile is the building block of your island.",
+            description: "An intense magical aura emanates from this tile.",
             key: 3
         },
         {
@@ -38,7 +38,7 @@ function SidePanel(props) {
         {
             type: "Iron",
             level: 1,
-            description: "The basic tile is the building block of your island.",
+            description: "Below the rocky surface of this tile huge deposits of iron awaits .",
             key: 5
         },
         {
@@ -50,18 +50,18 @@ function SidePanel(props) {
         {
             type: "Iron",
             level: 1,
-            description: "The basic tile is the building block of your island.",
+            description: "Below the rocky surface of this tile huge deposits of iron awaits .",
             key: 7
         },
         {
             type: "Shardium",
             level: 1,
-            description: "The basic tile is the building block of your island.",
+            description: "An intense magical aura emanates from this tile.",
             key: 8
         },
     ]);
 
-    const [selectedNFT, setSelectedNFT] = useState(undefined)
+    const [selectedNFT, setSelectedNFT] = useState(landPopulate[0].key)
 
 
     // useEffect(() => {
@@ -151,14 +151,14 @@ function SidePanel(props) {
     return (
         <div id="menuPanel">
             <img className="headerImage" src="hexagon.png"></img>
-            <h1>Tile: {"[" + Math.ceil(props.data[0]) + "," + Math.ceil(props.data[2]) + "," + Math.ceil(props.data[1]) + "]"} </h1>
+            <h2>Tile: {"[" + Math.ceil(props.data[0]) + "," + Math.ceil(props.data[2]) + "," + Math.ceil(props.data[1]) + "]"} </h2>
             {/* <p className="coordinates">{"[" + Math.ceil(props.data[0]) + "," + Math.ceil(props.data[2]) + "," + Math.ceil(props.data[1]) + "]"}</p> */}
             <h1>Select Land {selectedNFT}</h1>
             <div className="tileList">
                 {landPopulate.map((land) => {
                     return (
                         <div key={land.key} onClick={(e => { setSelectedNFT(land.key) })} className="tile">
-                            <img className="cardImage" src="shardium.png"></img>
+                            <img className="cardImage" src={`${land.type}.png`}></img>
                             <div className="cardInformation">
                                 <p className="cardText cardTextTitle">{land.type}</p>
                                 <p className="cardText cardsubTitle">Level {land.level}</p>

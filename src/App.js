@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import CameraControls from "./Utils/Camera";
 import React, { useRef, useState, Suspense } from 'react'
 import Grid from "./Utils/Board/Grid";
-import { Canvas, useFrame, useLoader, extend } from '@react-three/fiber'
+import { Canvas, useFrame, useLoader, extend, useThree } from '@react-three/fiber'
 import SidePanel from "./Utils/SidePanel/SidePanel";
-import BasicTile from "./ModelComponent/BasicTile";
+import Enviroment from "./Environment";
+
+
+// import * as THREE from "three";
 import './App.css';
-import { Environment } from '@react-three/drei'
 
 //Turns OrbitControls into a JSX element.
 // extend({ OrbitControls });
@@ -23,7 +25,8 @@ function App() {
     <div className="App">
       <Canvas>
         <Suspense fallback={"loading"}>
-          <color attach="background" args={["#229aca"]} />
+          {/* <color attach="background" args={["#229aca"]} /> */}
+          {/* <Enviroment/> */}
           <CameraControls />
           <Grid type={0} data={handleData} />
           <Grid type={[1]} />
