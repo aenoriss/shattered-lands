@@ -21,10 +21,15 @@ const CameraControls = () => {
     } = useThree();
     // Ref to the controls, so that we can update them on every frame using useFrame
     const controls = useRef();
+
     useFrame((state) => controls.current.update());
     return (
         <orbitControls
       ref={controls}
+      maxPolarAngle={Math.PI / 2 - 0.3}
+      minPolarAngle={0}
+      maxDistance={10}
+      minDistance={1}
       args={[camera, domElement]}
     />
     );

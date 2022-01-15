@@ -22,6 +22,7 @@ function Tile(props) {
         <mesh
             {...props}
             ref={mesh}
+            rotation={[Math.PI / 2, 0, 0]}
             onPointerOver={(event) => {
                 updateGrid(true);
             }}

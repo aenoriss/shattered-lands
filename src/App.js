@@ -11,7 +11,6 @@ import { CubeTextureLoader } from "three";
 import './App.css';
 import { Environment } from "@react-three/drei";
 function App() {
-  // const { scene } = useThree();
   const [selectedTile, setselectedTile] = useState(undefined)
   const [sceneLoaded, setSceneLoaded] = useState(false)
 
@@ -37,7 +36,7 @@ function App() {
             preset={null}
           /> */}
           {/* <BasicTile/> */}
-          {/* <axesHelper/> */}
+          <axesHelper/>
           <pointLight position={[10, 10, 10]} />
           <ambientLight />
         </Suspense>

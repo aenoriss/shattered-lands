@@ -21,6 +21,7 @@ function TileLayout(props) {
     return (
         <mesh
             {...props}
+            rotation={[Math.PI / 2, 0, 0]}
             ref={mesh}>
             <ringGeometry position={[props.position[0], props.position[2], props.position[1]]} args={[theta, 0.579, 6]} />
             <meshStandardMaterial side={DoubleSide} color="#229aca"/>
