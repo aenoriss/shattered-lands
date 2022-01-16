@@ -6,7 +6,7 @@ import { DoubleSide } from "three";
 function Tile(props) {
     const mesh = useRef()
     const [hovered, setHover] = useState(false)
-    const [theta, setTheta] = useState(props.type == 0 ? 0: 0.54)
+    const [theta, setTheta] = useState(props.type == 0 ? 0 : 0.54)
 
     //useFrame((state, delta) => (mesh.current.rotation.x += 0.01))
     function updateGrid(state) {
@@ -34,10 +34,11 @@ function Tile(props) {
             onClick={(event) => {
                 // console.log("clicked", props.position)
                 props.data(props.position);
-
             }}>
+
+
             <ringGeometry position={[props.position[0], props.position[2], props.position[1]]} args={[theta, 0.579, 6]} />
-            <meshStandardMaterial side={DoubleSide} color="white" color={hovered ? "#567d46" : "white"} />
+            <meshStandardMaterial opacity={hovered ? 1.0 : 0.0} transparent side={DoubleSide} color={hovered ? "#567d46" : null} />
         </mesh>
     )
 }

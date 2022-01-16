@@ -31,10 +31,9 @@ function Grid(props) {
         [],
     );
 
-
     return (
         matrix.map(pos => (
-            props.type == 0 ? <Tile type={[0]} position={[pos.x, 0, pos.z]} data={props.data} /> : <TileLayout type={[1]} position={[pos.x, 0.0001, pos.z ]} />
+            props.type == 0 ? <Tile type={[0]} position={[pos.x, 0, pos.z]} data={props.data} hide={props.hide}/> : <TileLayout type={[1]} position={[pos.x, 0.0001, pos.z ]} />
         ))
     )
 }
