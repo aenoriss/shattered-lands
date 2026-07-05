@@ -20,7 +20,7 @@ The world generator is live at [shattered-world-intp.vercel.app](https://shatter
 The repo is two subsystems. `world/` is the procedural generator and XR client. `tiles/` is the land-ownership layer: Truffle migrations that deploy to Polygon, the contract ABIs, and a React Three Fiber hex viewer.
 
 ```mermaid
-flowchart TD
+flowchart LR
   subgraph world
     R[generateHexen: concentric rings] --> B[placeBiomes: weighted table]
     B --> H[Hex: staggered spring spawn] --> X[R3F / WebXR canvas]
