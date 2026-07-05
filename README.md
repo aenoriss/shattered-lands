@@ -33,11 +33,15 @@ flowchart TD
 
 ### The procedural hex-world generator
 
-`generateHexen` lays out the map as concentric hexagonal rings from a center tile. It walks each ring's perimeter by adding a fixed six-segment step matrix (`xMatrix` and `zMatrix` over a tile diameter of 20), so the ring math stays to plain additions with no axial coordinates. `placeBiomes` then rolls `Math.random()` against a weighted table: shardium 0.01, iron 0.05, mountain 0.15, plateau 0.35, plain 0.65, forest as the fallback. The center is reserved for the spawn building, and the first ring is forced to plains. That keeps rare resource biomes rare and the ground near spawn walkable. Each tile animates up from y = -100 with react-spring on a staggered delay of `(6 * ring) + index`, so the world grows outward ring by ring.
+`generateHexen` lays out the map as concentric hexagonal rings from a center tile. It walks each ring's perimeter with a fixed six-segment step matrix (`xMatrix` and `zMatrix`, tile diameter 20). `placeBiomes` then rolls `Math.random()` against a weighted table: shardium 0.01, iron 0.05, mountain 0.15, plateau 0.35, plain 0.65, forest as the fallback. The center is reserved for the spawn building, and the first ring is forced to plains. That keeps rare resource biomes rare and the ground near spawn walkable. Each tile animates up from y = -100 with react-spring on a staggered delay of `(6 * ring) + index`, so the world grows outward ring by ring.
 
 ### On-chain land ownership
 
-The `tiles/` migrations deploy an ERC721 `Lands` contract and a `Kingdom` contract. `Box` and `Achievements` go out through OpenZeppelin's `deployProxy`, so they sit behind upgradeable proxies. The game logic can then ship a new version without moving the ownership records underneath it, which matters when land is what people paid for. `truffle-config.js` points the deploy at Polygon Mumbai over a Chainstack websocket through an HDWalletProvider. Migration 1 writes the deployed `Lands` and `Kingdom` addresses to a JSON file the client reads. One caveat: the repo carries the compiled ABIs (`Lands`, `Kingdom`, `Achievements`, the `Shardium` ERC20, `Mine`, `Building`, `Box`/`BoxV2`) and the migration scripts, but the Solidity sources live elsewhere. So this side documents the deployment and the client wiring.
+The `tiles/` migrations deploy an ERC721 `Lands` contract and a `Kingdom` contract. `Box` and `Achievements` go out through OpenZeppelin's `deployProxy`, so they sit behind upgradeable proxies. The game logic can ship a new version without moving the ownership records underneath it. `truffle-config.js` points the deploy at Polygon Mumbai over a Chainstack websocket through an HDWalletProvider. Migration 1 writes the deployed `Lands` and `Kingdom` addresses to a JSON file the client reads. One caveat: the repo has the compiled ABIs (`Lands`, `Kingdom`, `Achievements`, the `Shardium` ERC20, `Mine`, `Building`, `Box`/`BoxV2`) and the migration scripts. The Solidity sources live elsewhere.
+
+### Free variety from hex symmetry
+
+Each tile spawns with a random rotation, always a multiple of 60 degrees. A hexagon has six-fold symmetry, so any of those orientations still locks into the grid cleanly. It breaks up the visual repetition of the reused chunk models. Higher biomes like mountains, plateaus, and crystal also get a small random height bump, so those areas rise above the plains.
 
 ## Tech stack
 
