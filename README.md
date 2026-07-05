@@ -4,7 +4,7 @@ An experimental WebXR MMO demo: on-chain land ownership plus a procedural 3D wor
 
 ## Why it exists
 
-I built Shattered Lands at Mayland Labs between 2021 and 2023. The bet: a browser MMO could put land ownership on-chain and still play like a game. It was funded by Polygon and Vchain, reached the Metathon finals, and got into incubation at Sparklab and Draper University. This repo is the demo side of that work, the procedural world plus the land-ownership contracts and viewer.
+I built Shattered Lands at Mayland Labs between 2021 and 2023, betting that a browser MMO could put land ownership on-chain and still play like a game. It was funded by Polygon and Vchain, reached the Metathon finals, and got into incubation at Sparklab and Draper University. This repo is the demo side of that work, the procedural world plus the land-ownership contracts and viewer.
 
 The world generator is live at [shattered-world-intp.vercel.app](https://shattered-world-intp.vercel.app).
 
@@ -37,7 +37,16 @@ flowchart TD
 
 ### On-chain land ownership
 
-The `tiles/` migrations deploy an ERC721 `Lands` contract and a `Kingdom` contract. `Box` and `Achievements` go out through OpenZeppelin's `deployProxy`, so they sit behind upgradeable proxies. The game logic can ship a new version without moving the ownership records underneath it. `truffle-config.js` points the deploy at Polygon Mumbai over a Chainstack websocket through an HDWalletProvider. Migration 1 writes the deployed `Lands` and `Kingdom` addresses to a JSON file the client reads. One caveat: the repo has the compiled ABIs (`Lands`, `Kingdom`, `Achievements`, the `Shardium` ERC20, `Mine`, `Building`, `Box`/`BoxV2`) and the migration scripts. The Solidity sources live elsewhere.
+The `tiles/` migrations deploy an ERC721 `Lands` contract and a `Kingdom` contract. `Box` and `Achievements` go out through OpenZeppelin's `deployProxy`, so they sit behind upgradeable proxies. The game logic can ship a new version without moving the ownership records underneath it. `truffle-config.js` points the deploy at Polygon Mumbai over a Chainstack websocket through an HDWalletProvider. Migration 1 writes the deployed `Lands` and `Kingdom` addresses to a JSON file the client reads.
+
+```mermaid
+flowchart LR
+  U[Client via ethers/web3] --> PX[Proxy: stable address + storage]
+  PX -.delegatecall.-> V1[Logic v1]
+  PX -.after upgrade.-> V2[Logic v2]
+```
+
+One caveat: the repo has the compiled ABIs (`Lands`, `Kingdom`, `Achievements`, the `Shardium` ERC20, `Mine`, `Building`, `Box`/`BoxV2`) and the migration scripts. The Solidity sources live elsewhere.
 
 ### Free variety from hex symmetry
 
