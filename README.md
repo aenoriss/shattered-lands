@@ -4,7 +4,7 @@ An experimental WebXR MMO demo: on-chain land ownership plus a procedural 3D wor
 
 ## Why it exists
 
-I built Shattered Lands at Mayland Labs between 2021 and 2023. The bet was that a browser MMO could put land ownership on-chain and still feel like a game rather than a wallet. It was funded by Polygon and Vchain, reached the Metathon finals, and was admitted to incubation at Sparklab and Draper University. This repo is the demo side of that work: the procedural world and the land-ownership contracts and viewer.
+I built Shattered Lands at Mayland Labs between 2021 and 2023. The bet: a browser MMO could put land ownership on-chain and still play like a game. It was funded by Polygon and Vchain, reached the Metathon finals, and got into incubation at Sparklab and Draper University. This repo is the demo side of that work, the procedural world plus the land-ownership contracts and viewer.
 
 The world generator is live at [shattered-world-intp.vercel.app](https://shattered-world-intp.vercel.app).
 
@@ -33,11 +33,11 @@ flowchart TD
 
 ### The procedural hex-world generator
 
-`generateHexen` lays out the map as concentric hexagonal rings from a center tile. Instead of computing axial coordinates, it walks each ring's perimeter by adding a fixed six-segment step matrix (`xMatrix` and `zMatrix` over a tile diameter of 20), which keeps the ring math to plain additions. `placeBiomes` then rolls `Math.random()` against a weighted table (shardium 0.01, iron 0.05, mountain 0.15, plateau 0.35, plain 0.65, forest as the fallback), with the center reserved for the spawn building and the first ring forced to plains, so rare resource biomes stay rare and the ground around spawn stays walkable. Each tile then animates up from y = -100 with react-spring on a staggered delay of `(6 * ring) + index`, so the world grows outward ring by ring instead of popping in all at once.
+`generateHexen` lays out the map as concentric hexagonal rings from a center tile. It walks each ring's perimeter by adding a fixed six-segment step matrix (`xMatrix` and `zMatrix` over a tile diameter of 20), so the ring math stays to plain additions with no axial coordinates. `placeBiomes` then rolls `Math.random()` against a weighted table: shardium 0.01, iron 0.05, mountain 0.15, plateau 0.35, plain 0.65, forest as the fallback. The center is reserved for the spawn building, and the first ring is forced to plains. That keeps rare resource biomes rare and the ground near spawn walkable. Each tile animates up from y = -100 with react-spring on a staggered delay of `(6 * ring) + index`, so the world grows outward ring by ring.
 
 ### On-chain land ownership
 
-The `tiles/` migrations deploy an ERC721 `Lands` contract and a `Kingdom` contract, and use OpenZeppelin's `deployProxy` for the `Box` and `Achievements` contracts, so those sit behind upgradeable proxies. That means the game logic can ship a new version without moving the ownership records underneath it, which matters when land is the thing people paid for. `truffle-config.js` points the deploy at Polygon Mumbai over a Chainstack websocket through an HDWalletProvider, and migration 1 writes the deployed `Lands` and `Kingdom` addresses to a JSON file the client reads. Worth being honest here: the repo carries the compiled ABIs (`Lands`, `Kingdom`, `Achievements`, the `Shardium` ERC20, `Mine`, `Building`, `Box`/`BoxV2`) and the migration scripts, so it documents the deployment and the client wiring rather than the Solidity sources themselves.
+The `tiles/` migrations deploy an ERC721 `Lands` contract and a `Kingdom` contract. `Box` and `Achievements` go out through OpenZeppelin's `deployProxy`, so they sit behind upgradeable proxies. The game logic can then ship a new version without moving the ownership records underneath it, which matters when land is what people paid for. `truffle-config.js` points the deploy at Polygon Mumbai over a Chainstack websocket through an HDWalletProvider. Migration 1 writes the deployed `Lands` and `Kingdom` addresses to a JSON file the client reads. One caveat: the repo carries the compiled ABIs (`Lands`, `Kingdom`, `Achievements`, the `Shardium` ERC20, `Mine`, `Building`, `Box`/`BoxV2`) and the migration scripts, but the Solidity sources live elsewhere. So this side documents the deployment and the client wiring.
 
 ## Tech stack
 
@@ -68,8 +68,8 @@ npm start
 npm run deploy   # truffle migrate to Polygon Mumbai
 ```
 
-The deploy reads a wallet key from `tiles/.secret`. The value committed here is inert (a 65-char hex string, not a valid seed), carried over from the original repo, so supply your own to deploy.
+The deploy reads a wallet key from `tiles/.secret`. The committed value is a dummy placeholder, so supply your own to deploy to a live network.
 
 ## Status
 
-Experimental demo, 2021 to 2023, consolidated from the `shatteredTiles` and `shatteredWorld` repos with history preserved. The world generator is live; the contract side is a deployment record and viewer, not audited production code.
+Experimental demo, built at Mayland Labs from 2021 to 2023. The world generator is live. The contract side is a deployment record and viewer, prototype code that was never audited.
