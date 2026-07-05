@@ -4,7 +4,7 @@ An experimental WebXR MMO demo: on-chain land ownership plus a procedural 3D wor
 
 ## Why it exists
 
-I built Shattered Lands at Mayland Labs between 2021 and 2023, betting that a browser MMO could put land ownership on-chain and still play like a game. It was funded by Polygon and Vchain, reached the Metathon finals, and got into incubation at Sparklab and Draper University. This repo is the demo side of that work, the procedural world plus the land-ownership contracts and viewer.
+I built Shattered Lands at Mayland Labs between 2021 and 2023, betting that a browser MMO could put land ownership on-chain and still play like a game. It was funded by Polygon and Vchain, reached the Metathon finals, and got into incubation at Sparklab and Draper University. This repo is the demo side of that work, the procedural world plus the land-ownership contracts and viewer. It is the very early prototype; I later rebuilt the production version on Wonderland Engine, a WebXR engine.
 
 The world generator is live at [shattered-world-intp.vercel.app](https://shattered-world-intp.vercel.app).
 
