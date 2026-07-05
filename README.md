@@ -13,11 +13,11 @@ The world generator is live at [shattered-world-intp.vercel.app](https://shatter
 - Generates a hex-grid world of biomes procedurally, in concentric rings around a spawn
 - Renders it in WebXR with React Three Fiber, so it runs on a headset or a plain browser
 - Models land as on-chain NFTs, deployed to Polygon with an upgradeable contract setup
-- Ships a 3D tile viewer that reads the deployed contract addresses and shows owned tiles
+- Ships a 3D hex tile viewer for selecting and inspecting land tiles
 
 ## How it works
 
-The repo is two subsystems. `world/` is the procedural generator and XR client. `tiles/` is the land-ownership layer: Truffle migrations that deploy to Polygon, the contract ABIs, and a React Three Fiber viewer that talks to them through ethers and web3.
+The repo is two subsystems. `world/` is the procedural generator and XR client. `tiles/` is the land-ownership layer: Truffle migrations that deploy to Polygon, the contract ABIs, and a React Three Fiber hex viewer.
 
 ```mermaid
 flowchart TD
@@ -27,7 +27,7 @@ flowchart TD
   end
   subgraph tiles
     M[Truffle migrations] --> POLY[(Polygon: Lands, Kingdom, proxies)]
-    POLY --> V[R3F tile viewer via ethers/web3]
+    POLY -.->|owned-lands read, stubbed| V[R3F hex tile viewer]
   end
 ```
 
@@ -37,7 +37,7 @@ flowchart TD
 
 ### On-chain land ownership
 
-The `tiles/` migrations deploy an ERC721 `Lands` contract and a `Kingdom` contract. `Box` and `Achievements` go out through OpenZeppelin's `deployProxy`, so they sit behind upgradeable proxies. The game logic can ship a new version without moving the ownership records underneath it. `truffle-config.js` points the deploy at Polygon Mumbai over a Chainstack websocket through an HDWalletProvider. Migration 1 writes the deployed `Lands` and `Kingdom` addresses to a JSON file the client reads.
+The `tiles/` migrations deploy an ERC721 `Lands` contract and a `Kingdom` contract. `Box` and `Achievements` go out through OpenZeppelin's `deployProxy`, so they sit behind upgradeable proxies. The game logic can ship a new version without moving the ownership records underneath it. `truffle-config.js` points the deploy at Polygon Mumbai over a Chainstack websocket through an HDWalletProvider. Migration 1 writes the deployed `Lands` and `Kingdom` addresses to a JSON file for the client.
 
 ```mermaid
 flowchart LR
@@ -46,7 +46,7 @@ flowchart LR
   PX -.after upgrade.-> V2[Logic v2]
 ```
 
-One caveat: the repo has the compiled ABIs (`Lands`, `Kingdom`, `Achievements`, the `Shardium` ERC20, `Mine`, `Building`, `Box`/`BoxV2`) and the migration scripts. The Solidity sources live elsewhere.
+One caveat: the repo has the compiled ABIs (`Lands`, `Kingdom`, `Achievements`, the `Shardium` ERC20, `Mine`, `Building`, `Box`/`BoxV2`) and the migration scripts. The Solidity sources live elsewhere, and the client's ethers/web3 read of owned lands is scaffolded but commented out.
 
 ### Free variety from hex symmetry
 
