@@ -1,3 +1,5 @@
+<img src="assets/header.webp" alt="shattered lands" width="100%">
+
 # Shattered Lands
 
 An experimental WebXR MMO demo: on-chain land ownership plus a procedural 3D world you can walk in the browser.
