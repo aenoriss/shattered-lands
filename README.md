@@ -24,12 +24,12 @@ The repo is two subsystems. `world/` is the procedural generator and XR client. 
 ```mermaid
 flowchart LR
   subgraph world
-    R[generateHexen: concentric rings] --> B[placeBiomes: weighted table]
-    B --> H[Hex: staggered spring spawn] --> X[R3F / WebXR canvas]
+    direction LR
+    R[generateHexen: concentric rings] --> B[placeBiomes: weighted table] --> H[Hex: staggered spring spawn] --> X[R3F / WebXR canvas]
   end
   subgraph tiles
-    M[Truffle migrations] --> POLY[(Polygon: Lands, Kingdom, proxies)]
-    POLY -.->|owned-lands read, stubbed| V[R3F hex tile viewer]
+    direction LR
+    M[Truffle migrations] --> POLY[(Polygon: Lands, Kingdom, proxies)] -.->|owned-lands read, stubbed| V[R3F hex tile viewer]
   end
 ```
 
